@@ -1,24 +1,44 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addPosts } from '../store/reducers/posts/postSlice'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPosts } from "../store/reducers/posts/postSlice";
 
-export const AddPosts = () => {
-    const [postData, setPostData] = useState({title:'', body:''})
-    const dispatch = useDispatch()
+export default function AddPosts() {
+  const [postData, setPostData] = useState({ title: "", body: "" });
+  const dispatch = useDispatch();
 
-    const addPostHandler = () => {
-        dispatch(addPosts())
-    }
+  const addPostHandler = (e) => {
+    e.preventDefault();
+    dispatch(addPosts(postData));
+  };
 
-    const inputHandler = () => {
-        
-    }
+  const inputHandler = (e) => {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    return(
-        <>
-            <input type="text" />
-            <input type="text" />
-            <button onClick={addPostHandler} />
-        </>
-    )
+  console.log("state", postData);
+
+  return (
+    <>
+      <form onSubmit={addPostHandler}>
+        <input
+          className="bg-[#222]"
+          type="text"
+          onChange={inputHandler}
+          name="title"
+          required
+        />
+        <input
+          className="bg-[#222]"
+          type="text"
+          onChange={inputHandler}
+          name="body"
+          required
+        />
+        <input className="submit" type="submit" value="Submit" />
+      </form>
+    </>
+  );
 }

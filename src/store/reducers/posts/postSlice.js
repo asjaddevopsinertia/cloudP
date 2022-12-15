@@ -14,6 +14,7 @@ const initialState = {
 export const addPosts = createAsyncThunk(
   "posts/addPosts",
   async (post) => {
+    console.log("postss", post)
     try {
       const response = await axios.post(baseURL + "posts", post);
       return response.data;
@@ -35,8 +36,6 @@ export const getPosts = createAsyncThunk(
   }
 );
 
-
-
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -52,7 +51,6 @@ const postsSlice = createSlice({
       };
     },
     [addPosts.fulfilled]: (state, action) => {
-      // state.Post.push(action.payload);
       return {
         ...state,
         posts: [action.payload, ...state.posts],

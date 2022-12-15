@@ -9,7 +9,6 @@ export default function Home() {
   const post = useSelector((state) => state.posts);
   const { posts } = post;
 
-  console.log(posts);
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
@@ -18,7 +17,7 @@ export default function Home() {
     <>
       <Header />
       <div className="lg:container xl:max-w-[800px] mx-auto px-4">
-        {posts.map((post) => {
+        {posts.filter(Boolean).map((post) => {
           return (
             <React.Fragment key={post.id}>
               <Card data={post} />
