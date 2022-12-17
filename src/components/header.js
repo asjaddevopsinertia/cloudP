@@ -1,6 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/reducers/users/userSlice";
 
-export default function Header() {
+export const Header = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <div className="h-[120px]">
       <div className="flex justify-between items-center py-6 px-6 bg-blue mb-10 fixed w-full shadow-[0_4px_2px_-2px_gray]">
@@ -13,7 +18,7 @@ export default function Header() {
         </div>
 
         <div>
-          <h3 className="text-[#fff]">Logout</h3>
+          <h3 className="text-[#fff]" onClick={() => dispatch(logout())}>Logout</h3>
         </div>
       </div>
     </div>

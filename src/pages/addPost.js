@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPosts } from "../store/reducers/posts/postSlice";
 
-export default function AddPosts() {
+export const AddPosts = () => {
   const [postData, setPostData] = useState({ title: "", body: "" });
   const dispatch = useDispatch();
 
@@ -17,8 +17,6 @@ export default function AddPosts() {
       [e.target.name]: e.target.value,
     });
   };
-
-  console.log("state", postData);
 
   return (
     <>

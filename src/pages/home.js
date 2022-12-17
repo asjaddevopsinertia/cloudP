@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "../components/card";
 import { getPosts } from "../store/reducers/posts/postSlice";
-import Header from '../components/header'
+import { Header } from '../components/header'
 
-export default function Home() {
+export const Home = () => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts);
   const { posts } = post;
