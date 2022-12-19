@@ -5,6 +5,7 @@ const baseURL = "https://jsonplaceholder.typicode.com/";
 
 const initialState = {
   posts: [],
+  persistPosts: [], // saving the data after adding new post because api doesn't really add it to the api
   addPostStatus: "",
   addPostError: "",
   getPostStatus: "",
@@ -14,7 +15,6 @@ const initialState = {
 export const addPosts = createAsyncThunk(
   "posts/addPosts",
   async (post) => {
-    console.log("postss", post)
     try {
       const response = await axios.post(baseURL + "posts", post);
       return response.data;
@@ -53,7 +53,7 @@ const postsSlice = createSlice({
     [addPosts.fulfilled]: (state, action) => {
       return {
         ...state,
-        posts: [action.payload, ...state.posts],
+        persistPosts: [action.payload, ...state.persistPosts],
         addPostStatus: "success",
         addPostError: "",
         getPostStatus: "",
